@@ -20,13 +20,14 @@ function App() {
   return (
     <div className="App">
       <div className="container-fluid homepage-bgimage">
-        <div className='vertical'>
-          <Routes>
-            <Route path="/" element={<Home token={token}/>}/>
-            <Route path="/login" element = {<Login setToken={setToken} token={token}/>}/>
-            <Route path="/register" element = {<Register/>}/>
-          </Routes>
-        </div>
+        <Routes>
+          <Route path="/" element={<Home token={token}/>}/>
+          
+          <Route path="/login" element = {<Login setToken={setToken} token={token}/>}/>
+          <Route path="/register" element = {<Register/>}/>
+          
+        </Routes>
+        
         
       </div>
     </div>

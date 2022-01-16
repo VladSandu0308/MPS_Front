@@ -34,7 +34,7 @@ const Login = ({ setToken, token }) => {
 
   }
     return (
-      
+      <div className='vertical'>
         <div className="card shadow mb-4 text-center" style={{ width: '22rem', maxHeight: '40rem', margin: '0 0', backgroundColor: 'gold' }}>
           <div className="card-body">
               <h4 className="card-title mb-0 border-bottom font-weight-bold"> Login</h4>
@@ -65,7 +65,8 @@ const Login = ({ setToken, token }) => {
                 </a>
             </small>    
           </div>
-        </div>   
+        </div>
+      </div>   
     );
   }
 
