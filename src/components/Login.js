@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Navigate } from "react-router-dom";
 import PropTypes from 'prop-types';
 
 async function loginUser(credentials) {
@@ -12,10 +13,16 @@ async function loginUser(credentials) {
     .then(data => data.json())
  }
 
-const Login = () => {
+const Login = ({ setToken, token }) => {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
-  const [token, setToken] = useState(0);
+  console.log("1234 " + token);
+  if(token) {
+    return (
+      <Navigate to="/"/>
+    );
+  }
+  
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -23,16 +30,11 @@ const Login = () => {
       username,
       password
     });
-    console.log(retBody.token);
     setToken(retBody.token);
 
   }
     return (
       
-      <>
-      {token != 0 ? (
-        <></>
-      ) : (
         <div className="card shadow mb-4 text-center" style={{ width: '22rem', maxHeight: '40rem', margin: '0 0', backgroundColor: 'gold' }}>
           <div className="card-body">
               <h4 className="card-title mb-0 border-bottom font-weight-bold"> Login</h4>
@@ -63,11 +65,7 @@ const Login = () => {
                 </a>
             </small>    
           </div>
-        </div>
-      )}
-        
-      </>
-      
+        </div>   
     );
   }
 

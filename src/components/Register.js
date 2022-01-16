@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Navigate } from 'react-router-dom';
 import Login from './Login'
 
 async function register(credentials) {
@@ -34,7 +35,7 @@ const Register = () => {
       
     <>
     {token != 0 ? (
-      <></>
+      <Navigate to="/login"/>
     ) : (
       <div className="card shadow mb-4 text-center" style={{ width: '22rem', maxHeight: '40rem', margin: '0 0', backgroundColor: 'gold' }}>
         <div className="card-body">
@@ -66,8 +67,8 @@ const Register = () => {
         <div className="card-footer">
           <small className="text-muted">
               Already have an account?
-              <a className="ml-2" href="/register">
-                  SignIn
+              <a className="ml-2" href="/login">
+                  Sign In
               </a>
           </small>    
         </div>
