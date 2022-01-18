@@ -47,17 +47,17 @@ const Register = () => {
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label for="exampleInputEmail1">Username</label>
-              <input type="text" className="form-control" placeholder="Enter username" onChange={e => setUsername(e.target.value)}/>
+              <input type="text" className="form-control text-white bg-dark" placeholder="Enter username" onChange={e => setUsername(e.target.value)}/>
               
             </div>
             <div className="form-group">
               <label for="exampleInputEmail1">Email</label>
-              <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={e => setEmail(e.target.value)}/>
+              <input type="email" className="form-control text-white bg-dark" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={e => setEmail(e.target.value)}/>
               
             </div>
             <div className="form-group">
               <label for="exampleInputPassword1">Password</label>
-              <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
+              <input type="password" className="form-control text-white bg-dark" id="exampleInputPassword1" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
             </div>
             
             <button type="submit" className="btn btn-dark">Submit</button>

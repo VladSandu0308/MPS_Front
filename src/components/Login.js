@@ -13,7 +13,7 @@ async function loginUser(credentials) {
     .then(data => data.json())
  }
 
-const Login = ({ setToken, token }) => {
+const Login = ({ setToken, token, setUser }) => {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
   console.log("1234 " + token);
@@ -31,6 +31,7 @@ const Login = ({ setToken, token }) => {
       password
     });
     setToken(retBody.token);
+    setUser(retBody.user_id);
 
   }
     return (
@@ -44,12 +45,12 @@ const Login = ({ setToken, token }) => {
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label for="exampleInputEmail1">Username</label>
-              <input type="text" className="form-control" placeholder="Enter username" onChange={e => setUserName(e.target.value)}/>
+              <input type="text" className="form-control text-white bg-dark" placeholder="Enter username" onChange={e => setUserName(e.target.value)}/>
               
             </div>
             <div className="form-group">
               <label for="exampleInputPassword1">Password</label>
-              <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
+              <input type="password" className="form-control text-white bg-dark" id="exampleInputPassword1" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
             </div>
             
             <button type="submit" className="btn btn-dark">Submit</button>
