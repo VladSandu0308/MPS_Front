@@ -13,6 +13,7 @@ import { Route, Routes, Navigate} from 'react-router-dom';
 import React, { useState } from 'react';
 import CreateNewGame from './components/CreateNewGame';
 import useUser from './hooks/useUser';
+import ExistingGames from './components/existingGames';
 
 
 function App() {
@@ -27,9 +28,14 @@ function App() {
       
       <div className="container-fluid homepage-bgimage">
       { token ? (
-        <a href="/logout" class="btn btn-warning" style={{position: 'fixed', 'left': '1rem', 'top': '0.2rem', height: '2rem'}}>
-          <p>Logout</p>
-        </a>
+        <div>
+          <a href="/logout" class="btn btn-warning" style={{position: 'fixed', right: '1rem', 'top': '0.2rem', height: '2.3rem'}}>
+            <p>Logout</p>
+          </a>
+          <a href="/" class="btn btn-warning" style={{position: 'fixed', left: '1rem', 'top': '0.2rem', height: '2.3rem'}}>
+            <p>Go home</p>
+          </a>
+        </div>
       ) : (
         <></>
       )}
@@ -39,6 +45,7 @@ function App() {
           <Route path="/login" element = {<Login setToken={setToken} token={token} setUser={setUser}/>}/>
           <Route path="/register" element = {<Register/>}/>
           <Route path="/newGame" element = {<CreateNewGame token={token} user={user}/>}/>
+          <Route path="/rooms" element = {<ExistingGames token={token} user={user}/>}/>
         </Routes>
         
         

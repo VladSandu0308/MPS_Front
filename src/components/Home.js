@@ -28,7 +28,7 @@ const Home = ({ token }) => {
             <div className='card shadow' style={{position: 'fixed', width: '28rem', top: '15%'}}>
               <div className='card-header bg-secondary' style={{height: '4rem'}}></div>
               <div className='card-body text-center bg-dark'>
-                <a href="/newGame" className='stretched-link'></a>
+                <a href="/rooms" className='stretched-link'></a>
                 <h2 style={{color: 'gold'}}>Join existing game</h2>
               </div>
               <div className='card-footer bg-secondary' style={{height: '4rem'}}></div>
