@@ -14,6 +14,7 @@ import React, { useState } from 'react';
 import CreateNewGame from './components/CreateNewGame';
 import useUser from './hooks/useUser';
 import ExistingGames from './components/existingGames';
+import Room from './components/Room';
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
           <Route path="/register" element = {<Register/>}/>
           <Route path="/newGame" element = {<CreateNewGame token={token} user={user}/>}/>
           <Route path="/rooms" element = {<ExistingGames token={token} user={user}/>}/>
+          <Route path="/rooms/:roomid" element = {<Room />}/>
         </Routes>
         
         

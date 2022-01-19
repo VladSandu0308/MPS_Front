@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import { format } from 'react-string-format';
 
 async function postRequest(credentials) {
   return fetch('http://localhost:3000/createRoom', {
@@ -14,6 +15,8 @@ async function postRequest(credentials) {
 
 const CreateNewGame = ({token, user}) => {
 
+  const [created, setCreated ] = useState(0);
+
   const handleSubmit = async e => {
     e.preventDefault();
     const retBody = await postRequest({
@@ -24,7 +27,12 @@ const CreateNewGame = ({token, user}) => {
       max_users: players
     });
 
-    console.log("Error:" + retBody.message);
+    console.log("Error:" + JSON.stringify(retBody));
+
+    if (retBody.message === "The room has been successfully created.") {
+      console.log("Error:" + JSON.stringify(retBody));
+      setCreated(retBody.room_id);      
+    }
   }
 
   const [type, setType] = useState("PUBLIC");
@@ -35,6 +43,12 @@ const CreateNewGame = ({token, user}) => {
   if(!token) {
     return (
       <Navigate to="/login"/>
+    )
+  }
+
+  if (created) {
+    return (
+      <Navigate to={format('/rooms/{0}', created)} state={{ "room_id":created, user }}/>
     )
   }
 

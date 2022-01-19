@@ -1,11 +1,16 @@
 import React from 'react'
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 
 const Home = ({ token }) => {
+
+  // const {state} = useLocation();
+  // const {data} = state;
+  // console.log("Data: " + JSON.stringify(state));
+
   return (
     <>
     {!token ? (
-      <Navigate to="/login" />
+      <Navigate to="/login" state={{ test:"test" }} />
     ) : (
       
       <div className="container">

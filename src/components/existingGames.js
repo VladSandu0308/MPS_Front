@@ -16,9 +16,10 @@ const ExistingGames = () => {
         
         if (fetchingUser) {
           const result = await response.json();
+          console.log("Result:" + JSON.stringify(result));
           const arr = Object.values(result);
           console.log("Array:" + arr);
-          setRooms(arr);
+          setRooms(result);
         }
         setFetchingUser(false);
         
@@ -50,7 +51,25 @@ const ExistingGames = () => {
               <div className='accordion-item'>
                 <h2 class="accordion-header" id="flush-headingOne">
                 <button class="accordion-button collapsed bg-dark text-white" type="button" data-toggle="collapse" data-target={format('#{0}', item.room_id)} aria-expanded="false" aria-controls="flush-collapseOne">
-                  {item.room_name}
+                    
+                    <div className='col-md-6'>
+                      {item.room_name}
+                    </div>
+                  
+                    {
+                      item.type === "PRIVATE" ? (
+                        <div className='col-md-2 offset-md-4'>
+                          <i class="bi bi-lock" style={{height: '16', width: '16'}}></i>
+                        </div>
+                      ) : (
+                        <div className='col-md-2 offset-md-4'>
+                          <i class="bi bi-globe" style={{height: '32', width: '32'}}></i>
+                        </div>
+                      )
+                    }
+                    
+                  
+                  
                 </button>
                 <div id={item.room_id} class="accordion-collapse collapse bg-dark text-white" aria-labelledby="flush-headingOne" data-parent="#accordionFlushExample">
                   <div className='accordion-body'>
