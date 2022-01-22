@@ -19,7 +19,7 @@ const Login = ({ setToken, token, setUser }) => {
   console.log("1234 " + token);
   if(token) {
     return (
-      <Navigate to="/"/>
+      <Navigate to="/" />
     );
   }
   
@@ -36,6 +36,7 @@ const Login = ({ setToken, token, setUser }) => {
   }
     return (
       <div className='vertical'>
+
         <div className="card shadow mb-4 text-center" style={{ width: '22rem', maxHeight: '40rem', margin: '0 0', backgroundColor: 'gold' }}>
           <div className="card-body">
               <h4 className="card-title mb-0 border-bottom font-weight-bold"> Login</h4>
