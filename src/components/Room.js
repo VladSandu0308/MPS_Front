@@ -104,6 +104,8 @@ const Room = () => {
               <p>{rooms?.user_list?.length}</p>
               <h5>Maximum no. of players</h5>
               <p>{rooms?.max_players}</p>
+              <h5>Number of viewers in room</h5>
+              <p>{rooms?.viewers_nr}</p>
             </div>            
           </div>
         </div>
@@ -127,7 +129,7 @@ const Room = () => {
             state.user === rooms?.admin_id ? (
               <div className='col-md-12 d-flex justify-content-center gap-3'>
 
-                <button type="button" class="btn btn-dark btn-lg"></button>
+                <button type="button" class="btn btn-dark btn-lg">Start Game</button>
                 <button type="button" class="btn btn-dark btn-lg">Setings</button>
                 <button type="button" class="btn btn-dark btn-lg" onClick={handleLeaveGame}>Leave Game</button>
               </div>

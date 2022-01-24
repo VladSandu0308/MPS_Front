@@ -13,10 +13,22 @@ async function loginUser(credentials) {
     .then(data => data.json())
  }
 
+ async function enterGuest(credentials) {
+  return fetch('http://localhost:3000/enterGuest', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(credentials)
+  })
+    .then(data => data.json())
+ }
+
 const Login = ({ setToken, token, setUser }) => {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
   console.log("1234 " + token);
+
   if(token) {
     return (
       <Navigate to="/" />
@@ -34,6 +46,14 @@ const Login = ({ setToken, token, setUser }) => {
     setUser(retBody.user_id);
 
   }
+
+  const handleGuest = async e => {
+    e.preventDefault();
+    const retBody = await enterGuest({});
+    setToken(retBody.token);
+    setUser(retBody.user_id);
+  }
+
     return (
       <div className='vertical'>
 
@@ -55,7 +75,13 @@ const Login = ({ setToken, token, setUser }) => {
             </div>
             
             <button type="submit" className="btn btn-dark">Submit</button>
+            
           </form>
+          <h4 className='mt-2 mx-auto'>
+            or
+          </h4>
+          <button type="submit" className="btn btn-dark" onClick={handleGuest}>Join as guest</button>
+          
 
             
           </div>
