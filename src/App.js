@@ -15,6 +15,7 @@ import CreateNewGame from './components/CreateNewGame';
 import useUser from './hooks/useUser';
 import ExistingGames from './components/existingGames';
 import Room from './components/Room';
+import Game from './components/Game';
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
           <Route path="/newGame" element = {<CreateNewGame token={token} user={user}/>}/>
           <Route path="/rooms" element = {<ExistingGames token={token} user={user}/>}/>
           <Route path="/rooms/:roomid" element = {<Room />}/>
+          <Route path="/game/:roomid" element = {<Game />}/>
         </Routes>
         
         
