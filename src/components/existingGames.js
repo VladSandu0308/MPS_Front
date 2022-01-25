@@ -16,7 +16,9 @@ async function postRequest(credentials) {
 const ExistingGames = ({token, user}) => {
 
   const [rooms, setRooms] = useState([]);
+  const [goodRooms, setGoodRooms] = useState([]);
   const [loaded, setLoaded] = useState(0);
+  const [search, setSearch] = useState("");
   const [ fetchingUser, setFetchingUser ] = useState(true);
 
   const [password, setPassword] = useState();
@@ -39,10 +41,6 @@ const ExistingGames = ({token, user}) => {
       setCreated(retBody.room_id); 
 
     }
-
-  console.log("cccc" + created);
-
-
   }
 
   useEffect(() => {
@@ -58,6 +56,7 @@ const ExistingGames = ({token, user}) => {
           const arr = Object.values(result);
           console.log("Array:" + arr);
           setRooms(result);
+          setGoodRooms(result);
         }
         setFetchingUser(false);
         
@@ -73,6 +72,14 @@ const ExistingGames = ({token, user}) => {
     return () => { isMounted = false };
   }, [])
 
+  useEffect(() => {
+    setGoodRooms(
+      rooms.filter((room) => room.room_name?.toLowerCase().startsWith(search.toLowerCase()))
+    )
+  }, [search])
+
+  console.log("Search" + search);
+
   if (loaded === 0) {
     return (
       <></>
@@ -87,17 +94,30 @@ const ExistingGames = ({token, user}) => {
 
   if (created) {
     return (
-      <Navigate to={format('/rooms/{0}', created)} state={{ "room_id":created, user }}/>
+      <Navigate to={format('/rooms/{0}', created)} state={{ "room_id":created, user, token}}/>
     )
   }
+  console.log("Rooooms" + rooms.admin_id);
+  // if (rooms.length === 0) {
+  //   return (
+  //     <Navigate to="/"/>
+  //   )
+  // }
 
   return (    
     <div className="card mb-2 mx-auto" style ={{backgroundColor: 'gold', width: '30rem', top: '5rem'}}>
-      <div className='card-body text-center'>
+      <div className='card-body mb-4 text-center'>
         <h3 className='card-title border-bottom font-weight-bold' >Rooms</h3>
+        <input
+          className='bg-dark'
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          type="search"
+          placeholder="Search..."
+        />
         <div className = "accordion accordion-flush" id = "accordionFlushExample">
           {
-            rooms.map((item) => (
+            goodRooms.map((item) => (
               <div className='accordion-item'>
                 <h2 class="accordion-header" id="flush-headingOne">
                 <button class="accordion-button collapsed bg-dark text-white" type="button" data-toggle="collapse" data-target={format('#{0}', item.room_id)} aria-expanded="false" aria-controls="flush-collapseOne">
@@ -122,7 +142,10 @@ const ExistingGames = ({token, user}) => {
                   
                 </button>
                 <div id={item.room_id} class="accordion-collapse collapse bg-dark text-white" aria-labelledby="flush-headingOne" data-parent="#accordionFlushExample">
-                  <div className='accordion-body'>
+                  <div className='accordion-body' style={{fontSize: "medium"}}>
+                    <p>Admin: {item.admin_name}</p>
+                    <p>Users in room: {item.user_number} / {item.max_players}</p>
+                    <p>Game status: {item.game_status} </p>
                     { item.type === "PRIVATE" ? (
                       <div className="form-group mb-3">
                         <label>Password</label>

@@ -48,7 +48,7 @@ const CreateNewGame = ({token, user}) => {
 
   if (created) {
     return (
-      <Navigate to={format('/rooms/{0}', created)} state={{ "room_id":created, user }}/>
+      <Navigate to={format('/rooms/{0}', created)} state={{ "room_id":created, user, token }}/>
     )
   }
 
